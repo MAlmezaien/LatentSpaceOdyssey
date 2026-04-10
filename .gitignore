@@ -28,6 +28,9 @@ Thumbs.db
 # Local scratch / provenance smoke output
 .provenance_smoke/
 
+# Local alternate run tree (same workflow family as response_latent_space/; not versioned)
+Latent_embeddings/
+
 # Large or machine-local data (keep raw matrices out of git by default)
 **/data/raw/
 *.h5
