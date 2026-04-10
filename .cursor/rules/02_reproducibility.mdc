@@ -1,0 +1,12 @@
+---
+description: Reproducibility expectations
+globs:
+  - "**/*.py"
+  - "**/*.yaml"
+---
+
+# Reproducibility
+
+- Prefer stable relative paths from repo root; avoid machine-local absolute paths in configs and committed outputs.
+- Scripts should fail loudly on missing inputs.
+- Record git commit --trailer "Made-with: Cursor" and environment for analysis runs when using `src.run_provenance`.

@@ -1,0 +1,11 @@
+---
+description: Generated outputs and reports
+globs:
+  - "results/**/*"
+  - "reports/**/*"
+---
+
+# Outputs and reports
+
+- Do not manually edit generated CSVs, figures, or run artifacts.
+- Narrative and decisions belong in `docs/decisions/` and `reports/`, linked to reproducible run outputs.

@@ -1,0 +1,11 @@
+---
+description: Project scope for response latent space work
+globs:
+  - "**/*"
+---
+
+# Project scope
+
+- Primary work lives under `response_latent_space/` until reorganized by explicit plan.
+- Stage 1.5 plans in `docs/plans/` are canonical; Cursor-native plans are optional mirrors (see `docs/plans/stage1_5_master.md`).
+- Do not expand scope into Phase 1+ pipeline (`configs/stage1_5/`, `results/analysis_runs/`) unless that phase is active.

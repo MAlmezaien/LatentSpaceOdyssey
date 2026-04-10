@@ -1,0 +1,11 @@
+---
+description: No manual edits to pipeline results
+globs:
+  - "response_latent_space/results/**/*"
+  - "results/**/*"
+---
+
+# No manual result edits
+
+- Never hand-edit files under `results/` to "fix" numbers; change code and regenerate.
+- If a one-off correction is unavoidable, document it in `docs/logs/` with rationale (exceptional).
