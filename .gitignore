@@ -1,4 +1,4 @@
-﻿# Python
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
@@ -32,3 +32,27 @@ Thumbs.db
 **/data/raw/
 *.h5
 *.hdf5
+
+# Generated results and intermediates
+response_latent_space/results/
+embeddings_ppi/
+enrichment_results/
+enrichment_results_nmf/
+full_intermediate_data/
+health_checks/
+singleton_inspection/
+viz_*/
+viz_ppi/
+viz_ppi_khop/
+debug*/
+
+# Large local outputs
+tecan_*_outputs/
+modules_leiden_k*/
+modules_nmf/
+modules_leiden/
+
+# Large raw/reference data (broad; negate tracked exceptions below)
+*.txt
+*.tsv
+!**/requirements.txt
