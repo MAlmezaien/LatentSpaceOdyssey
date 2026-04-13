@@ -1,0 +1,28 @@
+# Stage 1.5 run config template (extend per run_family in later phases).
+#
+# Common keys:
+#   schema_version: "1"
+#   run_family: biovalidation | embedding_compare | partition_compare | ...
+#   run_tag: short identifier (e.g. nmf_k8_c3)
+#   output_filename_suffix: string for output stems like cluster_size_audit_<suffix>.csv
+#   paths: mapping of logical names -> repo-relative paths under this repository root
+#   outputs:
+#     target: legacy | analysis_run
+#     run_id: required if target is analysis_run (timestamp slug or YYYY-MM-DD_name)
+#     force: optional bool; if true, replace existing analysis_run directory
+#   interpretation_report: optional (biovalidation) title_line, caveat_markdown
+#
+# Legacy outputs: response_latent_space/results/biovalidation/<run_tag>/
+# Contract outputs: results/analysis_runs/<run_id>/tables/ (+ provenance at run root)
+
+schema_version: "1"
+run_family: embedding_compare
+run_tag: example
+output_filename_suffix: example
+
+paths: {}
+
+outputs:
+  target: analysis_run
+  run_id: YYYY-MM-DD_example
+  force: false

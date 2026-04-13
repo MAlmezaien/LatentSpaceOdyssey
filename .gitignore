@@ -25,6 +25,10 @@ Thumbs.db
 .ipynb_checkpoints/
 *.ipynb_checkpoints
 
+# Stage 1.5 timestamped analysis runs (keep directory scaffold only)
+results/analysis_runs/*
+!results/analysis_runs/.gitkeep
+
 # Local scratch / provenance smoke output
 .provenance_smoke/
 

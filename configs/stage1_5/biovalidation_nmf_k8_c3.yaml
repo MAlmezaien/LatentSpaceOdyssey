@@ -1,0 +1,22 @@
+# Preset: biovalidation for NMF k=8, cell clusters c=3 (paths match interpret_cell_clusters legacy layout).
+schema_version: "1"
+run_family: biovalidation
+run_tag: nmf_k8_c3
+output_filename_suffix: nmf_k8_c3
+
+paths:
+  cell_clusters: response_latent_space/results/clustering/cell_clusters_nmf_k8_c3.csv
+  marker_drugs: response_latent_space/results/interpretation/cell_cluster_marker_drugs_nmf_k8_c3.csv
+  cell_sensitivity_summary: response_latent_space/results/interpretation/cell_cluster_sensitivity_summary_nmf_k8_c3.csv
+  cell_metadata: response_latent_space/data/metadata/cell_metadata.csv
+  drug_metadata: response_latent_space/data/metadata/drug_metadata.csv
+
+outputs:
+  target: legacy
+  # Use contract layout + provenance: set target to analysis_run and run_id (or pass --run-id on CLI).
+
+interpretation_report:
+  title_line: "# Cluster interpretation: NMF k=8, c=3\n"
+  caveat_markdown: |
+    ## Caveat
+    - Cluster 2 has one cell line (n=1) and is treated as case-report only, not a stable program-level cluster.

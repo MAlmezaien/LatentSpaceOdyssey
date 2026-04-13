@@ -23,21 +23,13 @@ from src.interpret import (
 )
 from src.io_utils import load_cell_metadata, load_drug_metadata, load_response_matrix, save_dataframe
 from src.plotting import plot_pca_scatter, plot_reconstruction_curve, plot_umap
+from src.repo_paths import as_repo_relative
 
 
 def load_config(path: str | Path) -> Dict[str, Any]:
     p = Path(path)
     with p.open("r", encoding="utf-8") as f:
         return yaml.safe_load(f)
-
-
-def _as_repo_relative(path: Path, repo_root: Path) -> str:
-    """Path as POSIX string relative to repo root (portable across machines)."""
-    try:
-        return path.resolve().relative_to(repo_root.resolve()).as_posix()
-    except ValueError:
-        return path.as_posix()
-
 
 
 def _list_embedding_runs(embeddings_root: Path) -> List[Tuple[str, int, Path]]:
@@ -273,10 +265,10 @@ def main() -> None:
                     "drug_silhouette": drug_sil,
                     "cell_stability_ari_mean": float(stability["ari"].mean()) if len(stability) else float("nan"),
                     "cell_stability_ari_median": float(stability["ari"].median()) if len(stability) else float("nan"),
-                    "cell_clusters_path": _as_repo_relative(cell_assign_path, repo_root),
-                    "drug_clusters_path": _as_repo_relative(drug_assign_path, repo_root),
-                    "cell_stability_path": _as_repo_relative(stab_path, repo_root),
-                    "marker_drugs_path": _as_repo_relative(marker_path, repo_root),
+                    "cell_clusters_path": as_repo_relative(cell_assign_path, repo_root),
+                    "drug_clusters_path": as_repo_relative(drug_assign_path, repo_root),
+                    "cell_stability_path": as_repo_relative(stab_path, repo_root),
+                    "marker_drugs_path": as_repo_relative(marker_path, repo_root),
                 }
             )
 
@@ -373,18 +365,18 @@ def main() -> None:
             lines.append("- Best mean ARI: (not available)\n")
 
         lines.append("\n## Key outputs\n")
-        lines.append(f"- Master summary: `{_as_repo_relative(master_path, repo_root)}`\n")
+        lines.append(f"- Master summary: `{as_repo_relative(master_path, repo_root)}`\n")
         lines.append(
-            f"- Cell cluster assignments: `{_as_repo_relative(out_cluster / 'cell_cluster_assignments.csv', repo_root)}`\n"
+            f"- Cell cluster assignments: `{as_repo_relative(out_cluster / 'cell_cluster_assignments.csv', repo_root)}`\n"
         )
         lines.append(
-            f"- Drug cluster assignments: `{_as_repo_relative(out_cluster / 'drug_cluster_assignments.csv', repo_root)}`\n"
+            f"- Drug cluster assignments: `{as_repo_relative(out_cluster / 'drug_cluster_assignments.csv', repo_root)}`\n"
         )
         lines.append(
-            f"- Marker drugs: `{_as_repo_relative(out_interp / 'cell_cluster_marker_drugs.csv', repo_root)}`\n"
+            f"- Marker drugs: `{as_repo_relative(out_interp / 'cell_cluster_marker_drugs.csv', repo_root)}`\n"
         )
-        lines.append(f"- Drug neighbors: `{_as_repo_relative(out_interp, repo_root)}` (see `drug_nearest_neighbors_*`)\n")
-        lines.append(f"- Figures: `{_as_repo_relative(out_fig, repo_root)}`\n")
+        lines.append(f"- Drug neighbors: `{as_repo_relative(out_interp, repo_root)}` (see `drug_nearest_neighbors_*`)\n")
+        lines.append(f"- Figures: `{as_repo_relative(out_fig, repo_root)}`\n")
 
         (out_interp / "embedding_interpretation_summary.md").write_text("".join(lines), encoding="utf-8")
     except Exception:
