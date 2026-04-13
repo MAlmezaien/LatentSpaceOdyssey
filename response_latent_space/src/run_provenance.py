@@ -48,11 +48,16 @@ def write_run_provenance(
     *,
     argv: list[str] | None = None,
     extra: Mapping[str, Any] | None = None,
+    config_source: Path | str | None = None,
+    run_id: str | None = None,
+    config_path_repo_relative: str | None = None,
+    schema_version: str = "1",
 ) -> Path:
     """
-    Write a minimal provenance bundle for an analysis run (Phase 0: lightweight).
+    Write a minimal provenance bundle for an analysis run.
 
-    Creates: git_commit.txt, command.txt, environment_export.txt, run_metadata.json
+    Creates: git_commit.txt, command.txt, environment_export.txt, run_metadata.json,
+    and optionally config_used.yaml (copy of the YAML that drove the run).
     """
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
@@ -72,12 +77,21 @@ def write_run_provenance(
     ]
     (out / "environment_export.txt").write_text("\n".join(env_lines), encoding="utf-8")
 
+    if config_source is not None:
+        src = Path(config_source)
+        (out / "config_used.yaml").write_bytes(src.read_bytes())
+
     meta: dict[str, Any] = {
+        "schema_version": schema_version,
         "created_utc": datetime.now(timezone.utc).isoformat(),
         "git_commit": commit,
         "python": sys.version.split()[0],
         "platform": platform.platform(),
     }
+    if run_id is not None:
+        meta["run_id"] = run_id
+    if config_path_repo_relative is not None:
+        meta["config_path"] = config_path_repo_relative
     if extra:
         meta["extra"] = dict(extra)
     (out / "run_metadata.json").write_text(json.dumps(meta, indent=2) + "\n", encoding="utf-8")

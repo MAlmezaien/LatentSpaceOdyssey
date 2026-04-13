@@ -3,9 +3,9 @@ doc_type: execution-plan
 stage1_5_phase: 1
 title: "Run contract + reusable analysis plumbing"
 branch: feat/stage1-5-pipeline-contract
-status: not started
+status: done
 owner: ""
-last_updated: "2026-04-10"
+last_updated: "2026-04-13"
 depends_on:
   - "Phase 0 merged to main"
 links:
@@ -22,7 +22,7 @@ links:
 
 | Field | Value |
 |-------|--------|
-| Status | not started · in progress · blocked · done |
+| Status | done |
 | Owner | |
 | Last updated | 2026-04-10 |
 | Depends on | Phase 0 merged to `main` |
@@ -87,12 +87,12 @@ Writing decision memos; full scientific interpretation; final HTML/PDF report (p
 
 ### Tasks
 
-- [ ] Freeze provenance bundle file list and `run_metadata.json` schema (minimal JSON is fine).
-- [ ] Add `configs/stage1_5/` YAMLs with explicit `paths:` block pointing at `response_latent_space/...`.
-- [ ] Implement path resolution helper (repo root discovery) shared by scripts.
-- [ ] Refactor biovalidation logic to parameterized functions + CLI; keep old script as wrapper if needed.
-- [ ] Fix **all** remaining absolute-path emissions from evaluation/summary pipelines touched by stage 1.5.
-- [ ] Add smoke script + Makefile target `stage1-5-smoke` (name flexible).
+- [x] Freeze provenance bundle file list and `run_metadata.json` schema (minimal JSON is fine).
+- [x] Add `configs/stage1_5/` YAMLs with explicit `paths:` block pointing at `response_latent_space/...`.
+- [x] Implement path resolution helper (repo root discovery) shared by scripts.
+- [x] Refactor biovalidation logic to parameterized functions + CLI; keep old script as wrapper if needed.
+- [x] Fix **all** remaining absolute-path emissions from evaluation/summary pipelines touched by stage 1.5 (`as_repo_relative` consolidated in `src/repo_paths.py`; evaluation already emitted repo-relative paths).
+- [x] Add smoke script + Makefile target `stage1-5-smoke` (name flexible).
 - [ ] PR → merge.
 
 ---

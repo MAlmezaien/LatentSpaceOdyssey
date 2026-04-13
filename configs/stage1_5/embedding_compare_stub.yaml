@@ -1,0 +1,12 @@
+# Stub for future embedding-compare runs (phase 2). Replace paths when implemented.
+schema_version: "1"
+run_family: embedding_compare
+run_tag: stub
+output_filename_suffix: stub
+
+paths: {}
+
+outputs:
+  target: analysis_run
+  run_id: YYYY-MM-DD_embedding_compare
+  force: false
